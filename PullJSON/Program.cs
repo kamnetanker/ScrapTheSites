@@ -17,9 +17,12 @@ namespace PullJSON
                     StreamReader sr = new StreamReader(args[0], System.Text.Encoding.Default);
 
                         string line;
+                  
                         while ((line = sr.ReadLine()) != null)
                         {
-                            for(int k=0; k<line.Length; k++)
+                        line = line.Replace("&quot;", "\"");
+                        line = line.Replace(",", ",\n");
+                        for (int k=0; k<line.Length; k++)
                             {
                                 if (line[k] == '{') braceCount++;
                                 else if (line[k] == '}') braceCount--;
